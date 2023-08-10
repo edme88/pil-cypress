@@ -5,6 +5,8 @@ import EdenHeader from "../../Page/edenHeader";
 import edenSalas from "../../Page/edenSalas";
 const edenHeader = new EdenHeader();
 
+const utils = require("../../Page/utils");
+
 describe("Test sobre la página de EDEN ENTRADAS", () => {
   beforeEach(() => {
     cy.openWeb();
@@ -65,35 +67,17 @@ describe("Test sobre la página de EDEN ENTRADAS", () => {
     edenHeader.getMenuButtons().contains("SALAS").click();
   });
 
-  it("Validación del calendario", () => {
-    const fechaActual = new Date();
-    const diaActual = fechaActual.getDate();
-    const mesActual = fechaActual.getMonth();
-    const anioActual = fechaActual.getFullYear();
+  it.only("Validación del calendario", () => {
+    const [dia, mes, anio] = utils.getCompleteDate();
 
-    const meses = [
-      "Enero",
-      "Febrero",
-      "Marzo",
-      "Abril",
-      "Mayo",
-      "Junio",
-      "Julio",
-      "Agosto",
-      "Septiembre",
-      "Octubre",
-      "Noviembre",
-      "Diciembre",
-    ];
-
-    edenHeader.getCalendarTitle().should("contain.text", meses[mesActual]);
-    edenHeader.getCalendarTitle().should("contain.text", anioActual);
+    edenHeader.getCalendarTitle().should("contain.text", mes);
+    edenHeader.getCalendarTitle().should("contain.text", anio);
 
     edenHeader
       .getCalendar()
       .find("td")
       .each((cuadradoDia, $inx) => {
-        if ($inx < diaActual) {
+        if ($inx < dia) {
           cy.wrap(cuadradoDia).should(
             "have.class",
             "ui-datepicker-unselectable ui-state-disabled"
@@ -130,7 +114,7 @@ describe("Test sobre la página de EDEN ENTRADAS", () => {
     });
   });
 
-  it.only("Verificar nombre de salas con FIXTURE", () => {
+  it("Verificar nombre de salas con FIXTURE", () => {
     //cy.visit("https://www.edenentradas.com.ar/sitio/contenido/salas");
     edenHeader.getMenuButtons().contains("SALAS").click();
 
