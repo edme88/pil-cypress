@@ -4,7 +4,8 @@
   "description": "Cypress - Tests automatizados para el curso de PIL",
   "main": "index.js",
   "scripts": {
-    "test": "test"
+    "test": "test",
+    "cypres:run:eden": "npx cypress run --e2e --browser chrome --spec cypress/e2e/EDEN"
   },
   "keywords": [
     "cypress",

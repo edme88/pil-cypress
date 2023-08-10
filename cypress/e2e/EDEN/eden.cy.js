@@ -67,7 +67,7 @@ describe("Test sobre la página de EDEN ENTRADAS", () => {
     edenHeader.getMenuButtons().contains("SALAS").click();
   });
 
-  it.only("Validación del calendario", () => {
+  it("Validación del calendario", () => {
     const [dia, mes, anio] = utils.getCompleteDate();
 
     edenHeader.getCalendarTitle().should("contain.text", mes);
