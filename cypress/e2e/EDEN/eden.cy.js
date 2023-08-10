@@ -7,13 +7,12 @@ const edenHeader = new EdenHeader();
 
 describe("Test sobre la página de EDEN ENTRADAS", () => {
   beforeEach(() => {
+    //const tamPantalla = Cypress.env("viewportdesktop").device;
+    const tamPantalla = Cypress.env("viewportmobile").device;
+    cy.viewport(tamPantalla);
     cy.visit("/");
-    //funcion para loguearse
   });
 
-  afterEach(() => {
-    //funcion para desloguearse
-  });
   it("Verificar subtitulos", () => {
     const txtBuscar = "BUSCAR EVENTO";
     const txtCalendar = "CALENDARIO DE EVENTOS";

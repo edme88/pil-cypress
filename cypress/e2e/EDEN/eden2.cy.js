@@ -1,10 +1,15 @@
 /// <reference types="cypress" />
 const edenHome2 = require("../../Page/edenHome2");
-const edenHeader2 = require("../../Page/edenHeader2")
+const edenHeader2 = require("../../Page/edenHeader2");
 
 describe("Test sobre la página de EDEN ENTRADAS", () => {
+  beforeEach(() => {
+    //const tamPantalla = Cypress.env("viewportdesktop").device;
+    const tamPantalla = Cypress.env("viewportmobile").device;
+    cy.viewport(tamPantalla);
+    cy.visit("/");
+  });
   it("Verificar subtitulos", () => {
-    cy.visit("https://www.edenentradas.com.ar/");
     edenHome2.getSubTitles().first().should("contain.text", "BUSCAR EVENTO");
     edenHome2
       .getSubTitles()
@@ -13,7 +18,6 @@ describe("Test sobre la página de EDEN ENTRADAS", () => {
   });
 
   it("Verificar Menu", () => {
-    cy.visit("https://www.edenentradas.com.ar/");
     const menuBtn = [
       "HOME",
       "TODOS",
@@ -24,14 +28,13 @@ describe("Test sobre la página de EDEN ENTRADAS", () => {
       "FESTIVALES",
       "SALAS",
     ];
-    
+
     menuBtn.forEach((txtBtn, $index) => {
       edenHeader2.getMenuButtons().eq($index).should("contain.text", txtBtn);
     });
   });
 
   it("Verificar pagina de recitales", () => {
-    cy.visit("https://www.edenentradas.com.ar/");
     edenHeader2.getMenuButtons().eq(3).click();
   });
 });
