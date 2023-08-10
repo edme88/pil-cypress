@@ -4,10 +4,7 @@ const edenHeader2 = require("../../Page/edenHeader2");
 
 describe("Test sobre la página de EDEN ENTRADAS", () => {
   beforeEach(() => {
-    //const tamPantalla = Cypress.env("viewportdesktop").device;
-    const tamPantalla = Cypress.env("viewportmobile").device;
-    cy.viewport(tamPantalla);
-    cy.visit("/");
+    cy.openWeb();
   });
   it("Verificar subtitulos", () => {
     edenHome2.getSubTitles().first().should("contain.text", "BUSCAR EVENTO");
