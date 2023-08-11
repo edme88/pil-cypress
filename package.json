@@ -7,6 +7,8 @@
     "test": "test",
     "cypress:open:desktop": "npx cypress open --e2e --browser chrome -e type=desktop",
     "cypress:open:mobile": "npx cypress open --e2e --browser chrome -e type=mobile",
+    "cypress:open:firefox:desktop": "npx cypress open --e2e --browser firefox -e type=desktop,grepTags=@regression",
+    "cypress:open:firefox:mobile": "npx cypress open --e2e --browser firefox -e type=mobile",
     "cypres:run:eden": "npx cypress run --e2e --browser chrome --spec cypress/e2e/EDEN",
     "cypres:run:eden:firefox": "npx cypress run --e2e --browser firefox --spec cypress/e2e/EDEN"
   },
@@ -20,5 +22,8 @@
   "license": "ISC",
   "dependencies": {
     "cypress": "^12.17.2"
+  },
+  "devDependencies": {
+    "@bahmutov/cy-grep": "^1.9.16"
   }
 }

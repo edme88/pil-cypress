@@ -12,7 +12,7 @@ describe("Test sobre la página de EDEN ENTRADAS", () => {
     cy.openWeb();
   });
 
-  it("Verificar subtitulos", () => {
+  it("Verificar subtitulos", { tags: "@regression" }, () => {
     const txtBuscar = "BUSCAR EVENTO";
     const txtCalendar = "CALENDARIO DE EVENTOS";
 
