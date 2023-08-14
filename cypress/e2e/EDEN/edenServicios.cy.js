@@ -11,7 +11,7 @@ describe("TEST DE SERVICIO DE EDEN", () => {
     });
   });
 
-  it.only("Verificar Servicio de INICIO 2", () => {
+  it("Verificar Servicio de INICIO 2", () => {
     cy.request({
       method: "GET",
       url: "https://edenapi.edenentradas.com.ar/edenventarestapi2/api/contenido/inicio",
@@ -22,6 +22,21 @@ describe("TEST DE SERVICIO DE EDEN", () => {
         `cypress/fixtures/autogenerado/eventos.json`,
         respuesta["body"]
       );
+    });
+  });
+
+  it("Verificar Servicio de INICIO 3 - Validar tipo de datos", () => {
+    cy.request({
+      method: "GET",
+      url: "https://edenapi.edenentradas.com.ar/edenventarestapi2/api/contenido/inicio",
+    }).then((respuesta) => {
+      cy.log(`Respuesta del servicio de Inicio: ${JSON.stringify(respuesta)}`);
+      expect(respuesta.status).to.eq(200);
+      cy.writeFile(
+        `cypress/fixtures/autogenerado/eventos.json`,
+        respuesta["body"]
+      );
+      cy.validarSchema(`eventos_schema`, "eventos");
     });
   });
 });
