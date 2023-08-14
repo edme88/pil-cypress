@@ -21,10 +21,10 @@
   "author": "Darwoft",
   "license": "ISC",
   "dependencies": {
-    "ajv": "^8.12.0",
-    "cypress": "^12.17.2"
+    "ajv": "^8.12.0"
   },
   "devDependencies": {
-    "@bahmutov/cy-grep": "^1.9.16"
+    "@bahmutov/cy-grep": "^1.9.16",
+    "cypress": "^12.17.3"
   }
 }
