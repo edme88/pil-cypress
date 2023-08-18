@@ -1,8 +1,8 @@
 /// <reference types="cypress" />
-import EdenHome from "../../Page/edenHome";
+import EdenHome from "../../Page/eden/edenHome";
 const edenHome = new EdenHome();
-import EdenHeader from "../../Page/edenHeader";
-import edenSalas from "../../Page/edenSalas";
+import EdenHeader from "../../Page/eden/edenHeader";
+import edenSalas from "../../Page/eden/edenSalas";
 const edenHeader = new EdenHeader();
 
 const utils = require("../../Page/utils");
