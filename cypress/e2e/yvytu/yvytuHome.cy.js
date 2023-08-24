@@ -1,4 +1,5 @@
 /// <reference types="cypress" />
+const yvytuHome = require("../../Page/yvytu/yvytuhome");
 
 describe("Tests sobre la página de YVYTU", () => {
   it("Verificar Barra de Navegación - Iterar en Botones pildora", () => {
@@ -6,7 +7,7 @@ describe("Tests sobre la página de YVYTU", () => {
 
     const menu = ["LA RESERVA", "CABAÑAS", "COMO LLEGAR", "CONTACTO", "DONÁ"];
 
-    cy.get('a[class*="rounded-full py-2 px-4"]').each((boton, indice) => {
+    yvytuHome.getMenuPillButton().each((boton, indice) => {
       cy.wrap(boton).should("have.text", menu[indice]).and("be.visible");
     });
   });
@@ -23,7 +24,7 @@ describe("Tests sobre la página de YVYTU", () => {
       "DONÁ",
     ];
 
-    cy.get("nav#menu-nav a").each((boton, indice) => {
+    yvytuHome.getMenuAllButton().each((boton, indice) => {
       if (indice != 0) {
         cy.wrap(boton).should("have.text", menu[indice]);
       }
