@@ -6,6 +6,14 @@ class YvytuHome {
   getMenuAllButton() {
     return cy.get("nav#menu-nav a");
   }
+
+  getIrArribaButton() {
+    return cy.get("#btn-scroll-top");
+  }
+
+  getGenericSubtitle() {
+    return cy.get("h2");
+  }
 }
 
 export default new YvytuHome();
