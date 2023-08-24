@@ -51,4 +51,21 @@ describe("Tests sobre la página de YVYTU", () => {
     });
     yvytuHome.getIrArribaButton().should("not.be.visible");
   });
+
+  it("Verificar Botón de Reservar", () => {
+    yvytuHome
+      .getGenericButton()
+      .contains("Reservar")
+      .should("have.attr", "href", "https://wa.me/5493757454400")
+      .and("have.attr", "target", "_blank");
+
+    yvytuHome
+      .getGenericButton()
+      .contains("Reservar")
+      .should(
+        "have.css",
+        "Background",
+        "rgb(34, 153, 84) none repeat scroll 0% 0% / auto padding-box border-box"
+      );
+  });
 });
