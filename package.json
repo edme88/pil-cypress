@@ -25,6 +25,6 @@
   },
   "devDependencies": {
     "@bahmutov/cy-grep": "^1.9.16",
-    "cypress": "^12.17.3"
+    "cypress": "^12.17.4"
   }
 }
