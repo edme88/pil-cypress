@@ -21,6 +21,10 @@ class YvytuHome {
     return cy.get("h2");
   }
 
+  getGenericParrafo() {
+    return cy.get(".text-justify p");
+  }
+
   getGenericButton() {
     return cy.get("a");
   }

@@ -7,6 +7,6 @@ Ejemplo de uso básico de Cypress (sin cucumber)
 [x] Barra de navegacion
 [x] Ir arriba
 [x] Botón Reservar
-[ ] Imágenes
-[ ] Botón de donar
+[x] Imágenes
+[x] Botón de donar
 [ ] Botoncitos circulares para pasar imágenes

@@ -66,6 +66,32 @@ describe("Tests sobre la página de YVYTU", () => {
     yvytuHome.getIrArribaButton().should("not.be.visible");
   });
 
+  it.only("Verificar textos de la página", () => {
+    yvytuHome
+      .getGenericSubtitle()
+      .eq(1)
+      .should(
+        "contain.text",
+        "\n            Conocé una historia mágica. Experimentá la resiliencia de la\n            naturaleza en su mayor dimensión.\n          "
+      );
+    yvytuHome
+      .getGenericParrafo()
+      .eq(0)
+      .invoke("text")
+      .then((texto) => {
+        cy.log(texto);
+        if (
+          texto.includes(
+            "La destrucción del ecosistema de selva atlántica durante las últimas décadas fue abismal."
+          )
+        ) {
+          cy.log("EL tetxo esta contenido");
+        } else {
+          cy.log("EL tetxo NO esta contenido");
+        }
+      });
+  });
+
   it("Verificar Botón de Reservar", () => {
     yvytuHome
       .getGenericButton()
@@ -136,5 +162,22 @@ describe("Tests sobre la página de YVYTU", () => {
       .getImgCabaniaArasari()
       .should("have.attr", "src", "./public/images/cabana-gallery/01.png")
       .and("have.attr", "alt", "Imagen 1");
+  });
+
+  it("Verificar Botón de Donar", () => {
+    yvytuHome
+      .getGenericButton()
+      .contains("Donar")
+      .should("have.attr", "href", "https://cafecito.app/reserva-yvytu")
+      .and("have.attr", "target", "_blank");
+
+    yvytuHome
+      .getGenericButton()
+      .contains("Donar")
+      .should(
+        "have.css",
+        "Background",
+        "rgb(34, 153, 84) none repeat scroll 0% 0% / auto padding-box border-box"
+      );
   });
 });
