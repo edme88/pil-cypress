@@ -68,4 +68,59 @@ describe("Tests sobre la página de YVYTU", () => {
         "rgb(34, 153, 84) none repeat scroll 0% 0% / auto padding-box border-box"
       );
   });
+
+  it("Verificar Reel de Imágenes", () => {
+    let arrayImagenes = [
+      "frase01.png",
+      "noche.png",
+      "pasafauna.png",
+      "picaflor.png",
+      "carpincho.png",
+      "frase01.png",
+      "noche.png",
+      "pasafauna.png",
+      "picaflor.png",
+      "carpincho.png",
+      "frase01.png",
+      "noche.png",
+      "pasafauna.png",
+      "picaflor.png",
+    ];
+
+    yvytuHome.getReelImagenes().each((imagenes, index) => {
+      cy.wrap(imagenes).should(
+        "have.attr",
+        "src",
+        `./public/images/gallery/${arrayImagenes[index]}`
+      );
+    });
+
+    /*let newArray = [];
+    yvytuHome
+      .getReelImagenes()
+      .each((imagen, index) => {
+        cy.wrap(imagen)
+          .invoke("attr", "src")
+          .then((texto) => {
+            cy.log(texto);
+            newArray.push(texto);
+          });
+      })
+      .then(() => {
+        cy.log(JSON.stringify(newArray));
+      });*/
+  });
+
+  it("Verificar Imagenes de las Cabañas", () => {
+    cy.log("**Todas las imagenes tienen como texto alternativo Imagen 1**");
+    cy.log("**YVYTU-015 Error texto alternativo**");
+    yvytuHome
+      .getImgCabaniaYaguarete()
+      .should("have.attr", "src", "./public/images/cabana-gallery/01.png")
+      .and("have.attr", "alt", "Imagen 1");
+    yvytuHome
+      .getImgCabaniaArasari()
+      .should("have.attr", "src", "./public/images/cabana-gallery/01.png")
+      .and("have.attr", "alt", "Imagen 1");
+  });
 });
