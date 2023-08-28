@@ -66,30 +66,42 @@ describe("Tests sobre la página de YVYTU", () => {
     yvytuHome.getIrArribaButton().should("not.be.visible");
   });
 
-  it.only("Verificar textos de la página", () => {
-    yvytuHome
-      .getGenericSubtitle()
-      .eq(1)
-      .should(
-        "contain.text",
-        "\n            Conocé una historia mágica. Experimentá la resiliencia de la\n            naturaleza en su mayor dimensión.\n          "
-      );
-    yvytuHome
-      .getGenericParrafo()
-      .eq(0)
-      .invoke("text")
-      .then((texto) => {
-        cy.log(texto);
-        if (
-          texto.includes(
-            "La destrucción del ecosistema de selva atlántica durante las últimas décadas fue abismal."
-          )
-        ) {
-          cy.log("EL tetxo esta contenido");
-        } else {
-          cy.log("EL tetxo NO esta contenido");
-        }
+  it("Verificar textos de la página", () => {
+    let inxPar = 0;
+    let cadaPalabraParrafo;
+    //Leer el readme
+    cy.fixture("textos_yvytu").then((txt_yvytu) => {
+      //Se toma cada elemento definido dentro del arrayJson que está en fixtures
+      txt_yvytu.forEach((elTexto, inx) => {
+        cy.log(`**VALIDACIÓN DEL TITULO: ${inx + 1}**`);
+        let yvyTitulo = elTexto.titulo;
+        //Se splitea el título del JSON con espacio para tomar cada palabra individual
+        yvyTitulo = yvyTitulo.split(" ");
+        yvyTitulo.forEach((palabra) => {
+          yvytuHome
+            .getGenericSubtitle()
+            .eq(inx + 1)
+            .should("contain.text", palabra);
+        });
+
+        //Verificar Párrafos
+        let yvyParrafos = elTexto.parrafos;
+        //"Parrafos" en el json contiene multiples parrafos
+        yvyParrafos.forEach((elParrafo) => {
+          cy.log(`Validar Parrafo ${inxPar}: ${elParrafo}`);
+
+          yvytuHome
+            .getGenericParrafo()
+            .eq(inxPar)
+            .invoke("text")
+            .then((parr) => {
+              parr = parr.replace(/\s+/g, " ").trim();
+              expect(parr).to.include(elParrafo);
+            });
+          inxPar++;
+        });
       });
+    });
   });
 
   it("Verificar Botón de Reservar", () => {
