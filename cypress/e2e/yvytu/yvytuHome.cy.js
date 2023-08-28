@@ -81,7 +81,7 @@ describe("Tests sobre la página de YVYTU", () => {
 
   it("Verificar textos de la página", () => {
     let inxPar = 0;
-    let cadaPalabraParrafo;
+
     //Leer el readme
     cy.fixture("textos_yvytu").then((txt_yvytu) => {
       //Se toma cada elemento definido dentro del arrayJson que está en fixtures
@@ -108,7 +108,9 @@ describe("Tests sobre la página de YVYTU", () => {
             .eq(inxPar)
             .invoke("text")
             .then((parr) => {
+              cy.log(`Parrafo sin modificar: ${parr}`);
               parr = parr.replace(/\s+/g, " ").trim();
+              cy.log(`Parrafo modificado: ${parr}`);
               expect(parr).to.include(elParrafo);
             });
           inxPar++;
