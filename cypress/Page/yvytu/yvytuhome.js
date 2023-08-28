@@ -9,12 +9,18 @@ class YvytuHome {
   }
 
   //Banner de imágenes
+  getCurrentImageBanner() {
+    return cy.get(
+      `[class^="w-full h-600 bg-[url('/public/images/header-gallery/"][class*="slick-current"]`
+    );
+  }
+
   getImagenesBanner() {
     return cy.get(`[class*="bg-[url('/public/images/header-gallery/"]:visible`);
   }
 
   getImgButton() {
-    return cy.get('[id^="slick-slide-control2"]');
+    return cy.get("ul").first().find("li button");
   }
 
   getGenericSubtitle() {

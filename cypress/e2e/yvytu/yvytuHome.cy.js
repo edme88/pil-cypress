@@ -32,17 +32,30 @@ describe("Tests sobre la página de YVYTU", () => {
   });
 
   it("Verificar Imágenes del Banner Principal", () => {
-    /*yvytuHome.getImagenesBanner().each((imagen) => {
-      cy.wrap(imagen).should("exist");
-    });*/
-    cy.log("Revisar el test");
-    yvytuHome.getImagenesBanner().eq(0).should("be.visible");
-    yvytuHome.getImgButton().eq(1).click();
-    yvytuHome.getImagenesBanner().eq(1).should("be.visible");
-    yvytuHome.getImgButton().eq(2).click();
-    yvytuHome.getImagenesBanner().eq(2).should("be.visible");
-    yvytuHome.getImgButton().last().click();
-    yvytuHome.getImagenesBanner().eq(3).should("be.visible");
+    //El texto es /public/images/header-gallery/01.png y varía hasta 04
+    const bannerList = ["01.png", "02.png", "03.png", "04.png"];
+
+    bannerList.forEach((banner, inx) => {
+      yvytuHome
+        .getCurrentImageBanner()
+        .should(
+          "have.class",
+          `bg-[url('/public/images/header-gallery/${banner}')]`
+        );
+
+      yvytuHome
+        .getImgButton()
+        .its("length")
+        .then((cantidad) => {
+          if (cantidad != inx + 1) {
+            yvytuHome
+              .getImgButton()
+              .eq(inx + 1)
+              .click();
+            cy.wait(1000);
+          }
+        });
+    });
   });
 
   it("Verificar comportamiento del botón Ir Arriba", () => {
