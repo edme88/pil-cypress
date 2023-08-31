@@ -7,5 +7,6 @@ describe("Test sobre TIENDA CLARO", { tags: "@claro" }, () => {
 
   it("Ejemplo", { tags: "@plp" }, () => {
     //Ejemplo
+    //Solucione lo que migue me comento en github
   });
 });
